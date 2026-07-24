@@ -70,3 +70,4 @@ export server='192.168.122.102'
 
 echo "shellcheck name-of-script to check my scripts before running"
 
+export PATH="$HOME/.local/bin:$PATH"
