@@ -1,0 +1,10 @@
+#!/bin/bash
+if [[ $@ -le 1 ]];then
+	echo "Use: $0 commit_msg"
+fi
+git add ./* && git add ./.* 
+git commit -m "$1"
+eval $(ssh-agent)
+ssh-add -D && ssh-add ./keys/master-key
+git push origin main 
+ssh-add -D 

@@ -1,0 +1,9 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Filip Wozniak
+	email = filipwu95@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = auto
+	
