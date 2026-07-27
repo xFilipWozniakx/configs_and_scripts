@@ -9,3 +9,5 @@
 	
 [branch]
 	default = main
+[advice]
+	addIngoredFile = false

@@ -12,7 +12,7 @@ PROMPT_COMMAND=set_prompt
 PS1='\[\e[34m\]\u\[\e[0m\] '
 
 # History configuration
-HISTFILE=/home/superuser/kubernetes-hardway/kernel-based-virtual-machine/installation_configuration/chapter_zsh_history
+HISTFILE=~/.bash_history
 HISTSIZE=1000
 HISTFILESIZE=1000
 
@@ -43,22 +43,13 @@ bind '"\e[1;5C": forward-word'             # Ctrl + Right Arrow
 alias ls='ls -lah --color=auto'
 alias ip='ip -c'
 alias tree="tree -aC"
-unalias run-help 2>/dev/null
-alias help='man'                         # In Bash, 'man' or 'help' replaces run-help
 alias grep="grep --color=auto -n"
 alias sr='source ~/.bashrc'              # Changed to source .bashrc instead of .zshrc
 alias k='kubectl'
-alias update="sudo apt update && sudo apt -y upgrade"
-alias blog='cd /home/superuser/projekty/kubernetes/podstawy/lvl-2/learning-argocd/blog-kubernetes'
 
 # Word boundary behavior (Bash native equivalent to Zsh select-word-style bash)
 # Excludes typical path/file symbols from being considered part of a "word"
 export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
-
-# Custom Functions
-cgrep() {
-    grep --color=always -E "$1|$"
-}
 
 # Environment Variables
 export VISUAL='vim'

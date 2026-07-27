@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ "$#" -lt 2 ]];then
+	echo "Usage: $0 PATTERN PATH-TO-THE-FILE"
+	echo "Returns whole document with PATTERN highlited"
+	exit 1
+fi
+
+grep --color="always" -n -E "($1)|$" "$2"
+
