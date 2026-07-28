@@ -46,6 +46,8 @@ alias tree="tree -aC"
 alias grep="grep --color=auto -n"
 alias sr='source ~/.bashrc'              # Changed to source .bashrc instead of .zshrc
 alias k='kubectl'
+alias rm="rm -I"
+
 
 # Word boundary behavior (Bash native equivalent to Zsh select-word-style bash)
 # Excludes typical path/file symbols from being considered part of a "word"
