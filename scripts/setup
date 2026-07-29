@@ -9,7 +9,7 @@ else
 fi
 
 create_sys_links() {
-        ln -sf "$1" ~/
+        ln -sf "$1" ~/.local/bin
 }
 
 for i in *;do

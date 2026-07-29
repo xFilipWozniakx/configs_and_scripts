@@ -58,7 +58,7 @@ export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 # Environment Variables
 export VISUAL='vim'
 export EDITOR='vim'
-export PATH="$PATH:/home/superuser/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # start with tmux
 [[ -z tmux ]] && tmux
