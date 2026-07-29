@@ -48,6 +48,7 @@ alias sr='source ~/.bashrc'              # Changed to source .bashrc instead of 
 alias k='kubectl'
 alias rm="rm -I"
 alias d="docker"
+alias tmux='tmux has-session -t main 2>/dev/null || (tmux new-session -d -s main -n host && tmux new-window -t main:2 -n server && tmux send-keys -t main:2 "server" C-m) && tmux attach-session -t main'
 
 # Word boundary behavior (Bash native equivalent to Zsh select-word-style bash)
 # Excludes typical path/file symbols from being considered part of a "word"
@@ -56,10 +57,8 @@ export WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
 # Environment Variables
 export VISUAL='vim'
 export EDITOR='vim'
-export node0='192.168.122.203'
-export node1='192.168.122.155'
-export jumpbox='192.168.122.111'
-export server='192.168.122.102'
 export PATH="$PATH:/home/superuser/.local/bin"
 
-echo "shellcheck name-of-script to check my scripts before running"
+# start with tmux
+[[ -z tmux ]] && tmux
+
