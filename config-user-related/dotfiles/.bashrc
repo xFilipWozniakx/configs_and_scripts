@@ -49,6 +49,7 @@ alias k='kubectl'
 alias rm="rm -I"
 alias d="docker"
 alias tmux='tmux has-session -t main 2>/dev/null || (tmux new-session -d -s main -n host && tmux new-window -t main:2 -n server && tmux send-keys -t main:2 "server" C-m) && tmux attach-session -t main'
+alias server="ssh -Y -i ~/.ssh/ssh_keys/arch_key superuser@lab"
 
 # Word boundary behavior (Bash native equivalent to Zsh select-word-style bash)
 # Excludes typical path/file symbols from being considered part of a "word"
