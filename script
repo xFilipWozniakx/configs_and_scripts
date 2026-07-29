@@ -3,7 +3,7 @@ if [[ $@ -le 1 ]];then
 	echo "Use: $0 commit_msg"
 fi
 git add ./* && git add ./.* 
-git commit -m "$(echo $1)"
+git commit -m "$(echo $1)" 2>/dev/null
 eval $(ssh-agent)
 ssh-add -D && ssh-add ./keys/master-key
 git push origin main 
