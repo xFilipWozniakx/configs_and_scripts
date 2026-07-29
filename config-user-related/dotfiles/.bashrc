@@ -61,5 +61,5 @@ export EDITOR='vim'
 export PATH="$PATH:$HOME/.local/bin"
 
 # start with tmux
-[[ -z tmux ]] && tmux
+[[ -z "$TMUX" ]] && tmux
 
