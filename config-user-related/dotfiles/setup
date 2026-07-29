@@ -26,6 +26,9 @@ for i in "${list[@]}";do
 		".setup.swp")
 			continue
 			;;
+		"export_extra_path")
+			continue
+			;;
 		*)
 			create_sys_links "$PWD/$i"
 	esac

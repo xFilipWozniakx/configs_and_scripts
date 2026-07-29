@@ -60,7 +60,6 @@ export node0='192.168.122.203'
 export node1='192.168.122.155'
 export jumpbox='192.168.122.111'
 export server='192.168.122.102'
+export PATH="$PATH:/home/superuser/.local/bin"
 
 echo "shellcheck name-of-script to check my scripts before running"
-
-export PATH="$HOME/.local/bin:$PATH"
