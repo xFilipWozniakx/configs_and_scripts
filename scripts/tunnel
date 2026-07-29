@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ssh -L ${1:-8080}:${2:-localhost}:${1:-8080} -i ${3:-~/ssh/ssh_keys/arch_
+
