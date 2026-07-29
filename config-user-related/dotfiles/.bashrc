@@ -16,6 +16,17 @@ HISTFILE=~/.bash_history
 HISTSIZE=1000
 HISTFILESIZE=1000
 
+# tmux function
+start_main_tmux() {
+    if ! tmux has-session -t main 2>/dev/null; then
+        tmux new-session -d -s main -n host
+        tmux new-window -t main:2 -n server
+        tmux send-keys -t main:2 "server" C-m
+    fi
+    tmux attach-session -t main
+}
+
+
 # Bash Shell Options (replacing 'setopt' and 'unsetopt')
 shopt -s autocd         # Automatically cd into directory if name is typed
 shopt -s histappend     # Append history rather than overwriting
@@ -48,8 +59,8 @@ alias sr='source ~/.bashrc'              # Changed to source .bashrc instead of 
 alias k='kubectl'
 alias rm="rm -I"
 alias d="docker"
-alias tmux='tmux has-session -t main 2>/dev/null || (tmux new-session -d -s main -n host && tmux new-window -t main:2 -n server && tmux send-keys -t main:2 "server" C-m) && tmux attach-session -t main'
 alias server="ssh -Y -i ~/.ssh/ssh_keys/arch_key superuser@lab"
+alias t='start_main_tmux'
 
 # Word boundary behavior (Bash native equivalent to Zsh select-word-style bash)
 # Excludes typical path/file symbols from being considered part of a "word"
@@ -62,7 +73,9 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # start with tmux
 if [[ "$HOSTNAME" == "xxx" ]];then
-	[[ -z "$TMUX" ]] && tmux
+	if [[ -z "$TMUX" && -n "$PS1" ]];then
+		start_main_tmux
+	fi
 fi
 
 
