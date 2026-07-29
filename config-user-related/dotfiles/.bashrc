@@ -61,5 +61,8 @@ export EDITOR='vim'
 export PATH="$PATH:$HOME/.local/bin"
 
 # start with tmux
-[[ -z "$TMUX" ]] && tmux
+if [[ "$HOSTNAME" == "xxx" ]];then
+	[[ -z "$TMUX" ]] && tmux
+fi
+
 
