@@ -71,11 +71,13 @@ export VISUAL='vim'
 export EDITOR='vim'
 export PATH="$PATH:$HOME/.local/bin"
 
+eval $(ssh-agent) 
+
 # start with tmux
 if [[ "$HOSTNAME" == "xxx" ]];then
+	ssh-add ~/.ssh/ssh_keys/notes 	
 	if [[ -z "$TMUX" && -n "$PS1" ]];then
 		start_main_tmux
 	fi
 fi
-
 
