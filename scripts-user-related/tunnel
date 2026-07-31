@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ "$#" -eq 0 ]];then
+	echo 'Usage: $1 - ports, $2 - ip, $3 - path_ssh_key'
+fi
+ssh -L ${1:-8080}:${2:-localhost}:${1:-8080} -i ${3}
+
