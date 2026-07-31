@@ -1,2 +1,0 @@
-#!/bin/bash
-grep --color="always" -n -E "($1)|$" ${2:+"$2"}
