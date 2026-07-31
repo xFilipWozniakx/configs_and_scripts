@@ -5,6 +5,6 @@ fi
 git add ./* && git add ./.* 
 git commit -m "$1" 
 eval $(ssh-agent)
-ssh-add -D && sh-add "$UBUNTU_CONFIG_KEY"
+ssh-add -D && ssh-add "$UBUNTU_CONFIG_KEY"
 git push origin main 
 ssh-add -D 
