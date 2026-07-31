@@ -6,8 +6,9 @@
 	editor = vim
 [color]
 	ui = auto
-	
 [branch]
 	default = main
 [advice]
 	addIngoredFile = false
+[includeIf "gitdir:/data/ubuntu-server-configs/"]
+	path = /home/Filip/.config/git/.gitconfig-ubuntu

@@ -1,0 +1,4 @@
+#!/bin/bash
+echo $(whoami)
+all_ps=$(ps -aux | grep "ssh-agent" | awk -F ' ' '{print $1, $2, $7}')
+echo $all_ps
