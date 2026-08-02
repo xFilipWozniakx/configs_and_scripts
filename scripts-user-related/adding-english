@@ -1,0 +1,23 @@
+#!/bin/bash
+
+DECK="English"
+MODEL="Basic"
+FRONT="$1"
+BACK="$2"
+
+curl -s -X POST http://localhost:8765 -d "{
+	\"action\": \"addNote\",
+	\"version\": 6,
+	\"params\": {
+		\"note\": {
+			\"deckName\": \"$DECK\",
+			\"modelName\": \"$MODEL\",
+			\"fields\": {
+				\"Front\": \"$FRONT\",
+				\"Back\": \"$BACK\"
+			}
+		}
+	}
+	}" | jq . 
+
+

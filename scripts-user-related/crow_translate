@@ -6,3 +6,5 @@ if [[ -z "$TEXT" ]];then
 fi
 translation=$(crow -b -t pl "$TEXT")
 notify-send -t 10000 "$translation"
+~/.local/bin/adding-english "$TEXT" "$translation"
+
