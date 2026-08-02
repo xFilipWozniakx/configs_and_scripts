@@ -1,0 +1,8 @@
+#!/bin/bash
+TEXT="$(wl-paste -p)"
+if [[ -z "$TEXT" ]];then
+	notify-send "No text selected" 
+	exit 1
+fi
+translation=$(crow -b -t pl "$TEXT")
+notify-send -t 10000 "$translation"

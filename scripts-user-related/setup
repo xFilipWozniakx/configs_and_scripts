@@ -30,7 +30,7 @@ for i in "${list[@]}";do
 		timer)
 			if [[ -d ~/.local/share/timer ]]; then
 	        		mkdir -p ~/.local/share/timer
-        			cp files/timer/beep-08b.wav
+        			cp files/timer/beep-08b.wav ~/.local/share/timer
 			fi
 			create_sys_links "$PWD/$i"
 			;;
