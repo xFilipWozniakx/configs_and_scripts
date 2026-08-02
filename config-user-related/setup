@@ -1,22 +1,15 @@
 #!/usr/bin/bash
 
 # link config files to main directory
-
 create_sys_links() {
-	ln -sf "$1" ~/
+	local source="$1"
+	local target="${2:-${path:-$HOME}}"
+	ln -sf "$source" "$target"
 }
 
-for i in .*;do
-	list+=("$i")
-done
 
-for i in "${list[@]}";do
+for i in .*;do
 	
-	# Option a with if statments
-	#if [[ $i == '.' || $i == '..' || $i == '.setup.swp' ]];then
-	#	continue
-	#fi
-	# option b with case
 	case $i in 
 		".") 
 			continue
@@ -27,10 +20,17 @@ for i in "${list[@]}";do
 		".setup.swp")
 			continue
 			;;
+		".gitconfig-ubuntu")
+			if [[ ! -d ~/.config/git ]];then
+			     mkdir -p ~/.config/git
+			fi
+			create_sys_links "$PWD/$i" "${path:-$HOME}/.config/git"
+			;;
 		"export_extra_path")
 			continue
 			;;
 		*)
-			create_sys_links "$PWD/$i"
+			create_sys_links "$PWD/$i" "${path:-$HOME}"
+			;;
 	esac
 done

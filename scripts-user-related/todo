@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "1.Find out interactive / non-interactive shells"
+echo "2.finish timer script"
+echo "03. ctrl + backspace \& ctrl + del have to start deleting whole word in temrinal"

@@ -27,7 +27,15 @@ for i in "${list[@]}";do
 		setup) 
 			continue
 			;;
+		timer)
+			if [[ -d ~/.local/share/timer ]]; then
+	        		mkdir -p ~/.local/share/timer
+        			cp files/timer/beep-08b.wav
+			fi
+			create_sys_links "$PWD/$i"
+			;;
 		*)
 			create_sys_links "$PWD/$i" 
+			;;
 	esac
 done

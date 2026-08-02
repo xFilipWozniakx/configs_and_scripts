@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Timer to measure timing whenever i would need not to forget about something while still focusing on stuff im doing in the mean time
+
+if [[ "$#" -lt 1 ]]; then
+	echo "Use: $0 HOURS:MINUTES <- Time to send notification"
+	exit 1
+fi
+
+if [[ -d ~/.local/share/timer && -e ~/.local/share/timer/beep-08b.wav ]]; then
+	if command -v pactl >/dev/null 2>&1; then 
+	       	pactl upload-sample ~/.local/share/timer/beep-08b.wav timerapp
+	else
+		echo "pactl not found"
+	fi
+else
+	echo 'timer or beep not found'
+fi	
+
+finished=1
+while [[ "$finished" -eq 1 ]]; do
+	time=$(date +%H:%M)
+	if [[ "${time#*:}" == "${1#*:}" && "${time%:*}" == "${1%:*}" ]];then
+		
+		for i in {1..5}; do
+			pactl play-sample timerapp 2>/dev/null
+			sleep 0.5
+			echo "Time has came !!"
+		done
+		exit 0
+
+	fi
+	sleep 5s
+	clear
+	echo " Current time:     $time"
+        echo " Anticipated time: $1"	
+done	 
+
+
