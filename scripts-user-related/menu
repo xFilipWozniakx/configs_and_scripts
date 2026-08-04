@@ -1,0 +1,10 @@
+#!/bin/bash
+PS3="Select the operation"
+
+select ITEM in add subtrackt
+do
+	case $opt in 
+		add)
+		
+done
+

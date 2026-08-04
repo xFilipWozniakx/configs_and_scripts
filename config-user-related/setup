@@ -20,7 +20,7 @@ for i in .*;do
 		".setup.swp")
 			continue
 			;;
-		".gitconfig-ubuntu")
+		".gitconfig-ubuntu"|".gitconfig-lab")
 			if [[ ! -d ~/.config/git ]];then
 			     mkdir -p ~/.config/git
 			fi
@@ -28,6 +28,11 @@ for i in .*;do
 			;;
 		"export_extra_path")
 			continue
+			;;
+		"kitty.conf")
+i			[[ ! -d ~/.config/kitty ]] && mkdir -p ~/.config/kitty
+			create_sys_links "$PWD/$i" "${path:-$HOME}/.config/kitty"
+			cp "$PWD/files/kitty/background.jpg" "${path:-$HOME}/.config/kitty"
 			;;
 		*)
 			create_sys_links "$PWD/$i" "${path:-$HOME}"

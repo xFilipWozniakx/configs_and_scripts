@@ -12,3 +12,9 @@
 	addIngoredFile = false
 [includeIf "gitdir:/data/ubuntu-server-configs/"]
 	path = /home/Filip/.config/git/.gitconfig-ubuntu
+[includeIf "gitdir:/data/lab/"]
+        path = /home/Filip/.config/git/.gitconfig-lab
+
+
+
+

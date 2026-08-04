@@ -1,5 +1,8 @@
 #!/bin/bash
 echo "study LPIC 50/50 continue group lessons tomorow"
-echo "2. Fix ssh-agent properly"
 echo "3. ctrl + w to delete whole word with bash keybindings"
-
+echo 'check out man systemd-boot && man loader'
+echo 'man 5 loader.conf'
+echo 'przeniesienia na ekran zbindowac i wrzucic do bashrc'
+echo 'fix boot hole or atleast inspect what is that for a hole'
+echo 'make the translator app some kind of choince to reject adding to anki deck because somethimes i would send false translations'
