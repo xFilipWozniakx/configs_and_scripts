@@ -1,0 +1,35 @@
+#!/usr/bin/bash
+
+# Not sure if that would would with hyprland config files as systemlinks
+
+# link config files to main directory
+create_sys_links() {
+	local source="$1"
+	local target="${2:-${path:-$HOME}}"
+	ln -sf "$source" "$target"
+}
+
+
+for i in .* *;do
+	
+	case $i in 
+		".") 
+			continue
+			;;
+		"..")
+			continue
+			;;
+		".setup.swp")
+			continue
+			;;
+		"cfgs")
+			if [[ ! -d "$HOME/.config/hypr/cfgs" ]];then
+				mkdir -p "$HOME/.config/hypr/cfgs"
+			fi
+			cp -r "$PWD/cfgs/*" "$HOME/.config/hypr/cfgs"
+			;;
+		*)
+			create_sys_links "$PWD/$i" "${path:-$HOME}/.config/hypr"
+			;;
+	esac
+done
