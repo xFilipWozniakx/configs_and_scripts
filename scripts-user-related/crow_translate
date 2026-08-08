@@ -4,7 +4,7 @@ if [[ -z "$TEXT" ]];then
 	notify-send "No text selected" 
 	exit 1
 fi
-translation=$(crow -b -t pl "$TEXT")
+translation=$(/home/Filip/.local/bin/translator "$TEXT")
 notify-send -t 10000 "$translation"
 ~/.local/bin/adding-english "$TEXT" "$translation"
 

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# My little automated notification sender made for hyprland to remind me of what needs to be done on system / what needs to be solidified
+
+losowanie () {
+	random_number=$(cat /dev/random | tr -dc '0-9' | head -c "$numbers")
+	while [[ "$random_number" -gt "$lines" ]]; do
+		random_number=$(cat /dev/random | tr -dc '0-9' | head -c "$numbers")
+	done
+}
+
+while true; do
+	lines=$(cat /data/ubuntu-server-configs/scripts-user-related/files/notifications/informations | wc -l)
+	if [[ "$lines" -lt 10 ]];then
+		numbers=1
+	elif [[ "$lines" -lt 100 && "$lines" -gt 9 ]];then
+		numbers=2
+	else 
+		numbers=3
+	fi	
+	losowanie
+
+	information=$(sed -n "${random_number}p" /data/ubuntu-server-configs/scripts-user-related/files/notifications/informations)
+	notify-send -t 5000 "$information"
+	sleep 300
+done
+

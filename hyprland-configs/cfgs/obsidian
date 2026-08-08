@@ -1,6 +1,0 @@
-ankirule = "workspace 4, class:md.Obsidian"
-
-hl.on("hyprland.start", function ()
-	hl.exec_cmd("obsidian", -1)
-end)
-

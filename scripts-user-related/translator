@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Usage check
+if [ -z "$1" ]; then
+    echo "Usage: ./translate.sh \"Text to translate\""
+    exit 1
+fi
+
+TEXT="$1"
+
+# Request to Google Translate public endpoint (auto -> Polish)
+RESPONSE=$(curl -s -G "https://translate.googleapis.com/translate_a/single" \
+    --data-urlencode "client=gtx" \
+    --data-urlencode "sl=auto" \
+    --data-urlencode "tl=pl" \
+    --data-urlencode "dt=t" \
+    --data-urlencode "q=${TEXT}")
+
+# Extract translation and detected language code using jq
+TRANSLATION=$(echo "$RESPONSE" | jq -r '.[0][0][0]')
+DETECTED_LANG=$(echo "$RESPONSE" | jq -r '.[2]')
+
+echo "$TRANSLATION"

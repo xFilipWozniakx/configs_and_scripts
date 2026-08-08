@@ -1,0 +1,10 @@
+'bash -x script for non-interactive-debugging'
+'devpod to create custom workspaces just like codespaces on github'
+"Search the internet to find and explore the complete list of special characters."
+"Try running commands using strings made up of special characters and using various methods to escape them. Are there differences between the way those methods behave?"
+'make video for youtube, about debian with all 4 version of boot loaders + installation'
+'od -c file shows hidden characters inside of file'
+'learn to sed bashrc to add characters in the beggining like #'
+'dd if=/dev/sda of=/path/to/the/file status=progress - used to copy whole block devices'
+"check out man systemd-boot && man loader"
+"fix boot hole or atleast inspect what is that for a hole"

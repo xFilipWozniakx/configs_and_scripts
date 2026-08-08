@@ -2,6 +2,8 @@
 
 # Not sure if that would would with hyprland config files as systemlinks
 
+PTD="$PWD"
+
 # link config files to main directory
 create_sys_links() {
 	local source="$1"
@@ -10,7 +12,7 @@ create_sys_links() {
 }
 
 
-for i in .* *;do
+for i in *;do
 	
 	case $i in 
 		".") 
@@ -22,14 +24,21 @@ for i in .* *;do
 		".setup.swp")
 			continue
 			;;
+		"setup")
+			continue
+			;;
 		"cfgs")
 			if [[ ! -d "$HOME/.config/hypr/cfgs" ]];then
-				mkdir -p "$HOME/.config/hypr/cfgs"
+                                mkdir -p "$HOME/.config/hypr/cfgs"
 			fi
-			cp -r "$PWD/cfgs/*" "$HOME/.config/hypr/cfgs"
+			cd ./cfgs
+			for b in *; do
+				cp "$b" "$HOME/.config/hypr/cfgs" 
+			done
 			;;
-		*)
-			create_sys_links "$PWD/$i" "${path:-$HOME}/.config/hypr"
+		*)	
+			cd "$PTD"		
+			cp "$PWD/$i" "$HOME/.config/hypr"
 			;;
 	esac
 done

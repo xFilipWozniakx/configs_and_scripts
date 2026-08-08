@@ -1,6 +1,0 @@
-ankirule = "workspace 3, class:anki"
-
-hl.on("hyprland.start", function ()
-	hl.exec_cmd("anki", -1)
-end)
-

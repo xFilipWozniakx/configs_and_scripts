@@ -1,10 +1,29 @@
 #!/bin/bash
-echo "study LPIC 50/50 continue group lessons tomorow"
-echo "3. ctrl + w to delete whole word with bash keybindings"
 echo 'check out man systemd-boot && man loader'
-echo 'man 5 loader.conf'
-echo 'przeniesienia na ekran zbindowac i wrzucic do bashrc'
 echo 'fix boot hole or atleast inspect what is that for a hole'
-echo 'make the translator app some kind of choince to reject adding to anki deck because somethimes i would send false translations'
-echo 'instead of timer i should create a script which will open litle window with textbox, to say what ill be doing and it automatically will add dates and times of those actions.'
-echo 'checkout PAM authentication'
+echo 'bash -x script for non-interactive-debugging'
+
+echo 'devpod to create custom workspaces just like codespaces on github'
+echo "1. Search the internet to find and explore the complete list of special characters."
+echo "2. Try running commands using strings made up of special characters and using various methods to escape them. Are there differences between the way those methods behave?"
+echo 'make video for youtube, about debian with all 4 version of boot loaders + installation'
+echo 'od -c file shows hidden characters inside of file'
+echo 'learn to sed bashrc to add characters in the beggining like #'
+echo 'dd if=/dev/sda of=/path/to/the/file status=progress - used to copy whole block devices '
+
+#4. The Linux kernel keeps symbolic links in /proc/PID/fd/ to every file opened by a process,
+#where PID is the identification number of the corresponding process. How could the system
+#administrator use that directory to verify the location of log files opened by nginx, supposing
+#its PID is 1234?
+echo 'to use output of script/binary as argument to another program, use  example: mkdir \` date +%H:%M \` '
+echo 'find . -type f -name file[0-9][0-9] -exec sh -c 'echo some text >> ' _ {} \; ----  append text to files found with find  '
+
+" ssh -p 2222 root@127.0.0.1 bash -s <<'EOF' "
+'zmienna="$(which apt)";'
+'bash -c "${zmienna} update" && bash -c "${zmienna} -y upgrade"'
+'EOF'
+ctrl-b  n next window && ctrl-b  p previous window
+echo 'ctrl+b !  to turn pane into window ( maximalize ) '
+echo 'renice   to change running processes priority'
+echo 'nice   to run process with different priority value -19 - + 20 '
+echo 'nice   to run process with different priority value -19 - + 39 ( that one is right ) '
