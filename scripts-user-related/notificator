@@ -22,6 +22,6 @@ while true; do
 
 	information=$(sed -n "${random_number}p" /data/ubuntu-server-configs/scripts-user-related/files/notifications/informations)
 	notify-send -t 5000 "$information"
-	sleep 300
+	sleep 600
 done
 

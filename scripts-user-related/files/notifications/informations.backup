@@ -26,13 +26,3 @@ vim m key + letter of my choice, to set a position that i can comeback to with '
 Get to know macros in vim
 vim while in : i can specify s/pattern/my-text/ to use sed directly on the line cursor is at
 vim dt[char] to delete everything to next occurence of char
-dd if=/dev/zero of=myswap bs=1M count=1024  to create swap file 
-tune2fs     fine tunning ext2-4
-lsof   to view all files opened by a process / socket 
-getent  get entries from administrative database, like group
-umask -S   to see what are current default permissions to be set to created directories
-1755 is stickybit allows only owner to delete files with it ( t ) 
-2755 is GID allows all files runs with group permissions set ( s ) 
-4755 is UID allows all files run with user who created it priviledges ( s )
-find -perm -444   looks for files with atleast specified permissions
-wheres can show where is binary + path's to its man pages or source code

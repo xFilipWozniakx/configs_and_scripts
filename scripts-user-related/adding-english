@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Sends POST request to anki deck card software, and automatically adds both side of card in the deck ( english ) retrived from translator script
+
 DECK="English"
 MODEL="Basic"
 FRONT="$1"

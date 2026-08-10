@@ -1,4 +1,5 @@
 #!/bin/bash
+
 TEXT="$(wl-paste -p)"
 if [[ -z "$TEXT" ]];then
 	notify-send "No text selected" 

@@ -1,2 +1,5 @@
 #!/bin/bash
+
+# grep throught text and highlights pattern within all of the searched thought document
+
 grep --color="always" -n -E "($1)|$" ${2:+"$2"}
