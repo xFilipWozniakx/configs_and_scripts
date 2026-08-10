@@ -20,7 +20,7 @@ for i in .*;do
 		".setup.swp")
 			continue
 			;;
-		".gitconfig-ubuntu"|".gitconfig-lab")
+		".gitconfig-configs"|".gitconfig-lab")
 			if [[ ! -d ~/.config/git ]];then
 			     mkdir -p ~/.config/git
 			fi
