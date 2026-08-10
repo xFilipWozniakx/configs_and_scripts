@@ -10,8 +10,8 @@
 	default = main
 [advice]
 	addIngoredFile = false
-[includeIf "gitdir:/data/ubuntu-server-configs/"]
-	path = /home/Filip/.config/git/.gitconfig-ubuntu
+[includeIf "gitdir:/data/configs_and_scripts"]
+	path = /home/Filip/.config/git/.gitconfig-configs
 [includeIf "gitdir:/data/lab/"]
         path = /home/Filip/.config/git/.gitconfig-lab
 
