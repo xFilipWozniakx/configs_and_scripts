@@ -53,7 +53,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 		tmux set-environment -g SSH_AUTH_SOCK "$SSH_AUTH_SOCK" && tmux set-environment -g SSH_AGENT_PID "$SSH_AGENT_PID"
 	fi
 elif [[ "$HOSTNAME" == "home-lab" ]];then
-	export lab_path=~/lab
-	export configs_path=~/configs-scripts
+	export lab_path="${HOME}/lab"
+	export configs_path="${HOME}/configs-scripts"
 fi
 export service=/home/Filip/.config/systemd/user/
