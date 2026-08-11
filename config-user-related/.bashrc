@@ -6,7 +6,7 @@ PS1='\[\e[33m\]\h: $\[\e[0m\] \[\e[31m\]\w\[\e[0m\]\n   \[\e[32m\]'
 alias ls="ls -lah --color=always" 
 
 # bash_history
-HISTFILE=.bash_history
+HISTFILE=~/.bash_history
 HISTSIZE=5000
 shopt -s histappend
 
@@ -15,11 +15,9 @@ UBUNTU_CONFIG_KEY="$HOME/.ssh/ssh_keys/master-key"
 OBSIDIAN_NOTES_KEY="$HOME/.ssh/ssh_keys/obsidian-notes"
 LAB_KEY="$HOME/.ssh/ssh_keys/lab-repo"
 
-
-
-
 #Exports:
 export PATH="$PATH:$HOME/.local/bin"
+export service=/home/Filip/.config/systemd/user/
 
 #Alias:
 alias hypr='vim ~/.config/hypr/hyprland.lua'
@@ -55,5 +53,5 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 elif [[ "$HOSTNAME" == "home-lab" ]];then
 	export lab_path="${HOME}/lab"
 	export configs_path="${HOME}/configs-scripts"
+	# fix ssh-agent on ubuntu server
 fi
-export service=/home/Filip/.config/systemd/user/

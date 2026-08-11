@@ -19,12 +19,16 @@ if [[ "$hostname" == "archlinux" ]]; then
 				;;
 
 			".gitconfig")
-                                cp "$i" "${HOME}"
-                                echo "configs repo: ${configs_path}    lab repo: ${lab_path} "
-				sed -Ei "s|PATH1|$(echo ${configs_path})/|" ~/.gitconfig && sed -Ei "s|PATH2|$(echo ${lab_path})/|" ~/.gitconfig
                                 
-				;;
+				# needs configs_path exported path to configs&scripts and path to lab repo exported as lab_path 
+				# otherwise will not work properly
 
+				echo o "configs repo: ${configs_path}    lab repo: ${lab_path} "
+                                sed -Ei "s|(.* \"gitdir:)PATH1(.*)|\1${configs_path}\2|;s|(.* \"gitdir:)PATH2(.*)|\1${lab_path}\2|" ~/.gitconfig
+                                sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
+                                echo ".gitconfig added and paths exchanged"
+
+				;;
 			".gitconfig-configs"|".gitconfig-lab")
 				if [[ ! -d ~/.config/git ]]; then
 					mkdir -p ~/.config/git
@@ -88,8 +92,11 @@ elif [[ "$hostname" == "home-lab" ]]; then
 			".gitconfig")
 				cp "$i" "${HOME}"
 				echo "configs repo: ${configs_path}    lab repo: ${lab_path} "
-				sed -Ei "s|PATH1|$(echo ${configs_path})|" ~/.gitconfig && sed -Ei "s|PATH2|$(echo ${lab_path})|" ~/.gitconfig
+				sed -Ei "s|(.* \"gitdir:)PATH1(.*)|\1${configs_path}\2|;s|(.* \"gitdir:)PATH2(.*)|\1${lab_path}\2|" ~/.gitconfig
+				sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
+
 				echo ".gitconfig added and paths exchanged"
+
 				;;
 			*)	
 				continue

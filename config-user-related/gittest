@@ -11,9 +11,9 @@
 [advice]
 	addIngoredFile = false
 [includeIf "gitdir:PATH1"]
-	path = USERPATH1/.config/git/.gitconfig-configs
+	path = PATH1USER/.config/git/.gitconfig-configs
 [includeIf "gitdir:PATH2"]
-        path = USERPATH2/.config/git/.gitconfig-lab
+        path = PATH2USER/.config/git/.gitconfig-lab
 
 
 

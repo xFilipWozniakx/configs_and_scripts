@@ -1,0 +1,20 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Filip Wozniak
+	email = filipwu95@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = auto
+[branch]
+	default = main
+[advice]
+	addIngoredFile = false
+[includeIf "gitdir:/home/superuser/configs-scripts"]
+	path = /home/superuser/.config/git/.gitconfig-configs
+[includeIf "gitdir:/home/superuser/lab"]
+        path = /home/superuser/.config/git/.gitconfig-lab
+
+
+
+
