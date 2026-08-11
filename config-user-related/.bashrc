@@ -6,7 +6,7 @@ PS1='\[\e[33m\]\h: $\[\e[0m\] \[\e[31m\]\w\[\e[0m\]\n   \[\e[32m\]'
 alias ls="ls -lah --color=always" 
 
 # bash_history
-HISTFILE=~/Documents/.bash_history
+HISTFILE=.bash_history
 HISTSIZE=5000
 shopt -s histappend
 
@@ -41,8 +41,8 @@ alias showmethekey-s="gsettings set one.alynx.showmethekey clickable false"
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 	
-	lab_path="/data/lab"
-	configs_path="/data/configs_and_scripts"
+	export 	lab_path="/data/lab"
+	export configs_path="/data/configs_and_scripts"
 
 	# tmux && agent
 	if [[ -z "$TMUX" && $- == *i* ]]; then
@@ -53,7 +53,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 		tmux set-environment -g SSH_AUTH_SOCK "$SSH_AUTH_SOCK" && tmux set-environment -g SSH_AGENT_PID "$SSH_AGENT_PID"
 	fi
 elif [[ "$HOSTNAME" == "home-lab" ]];then
-	lab_path=~/lab
-	configs_path=~/configs-scripts
+	export lab_path=~/lab
+	export configs_path=~/configs-scripts
 fi
 export service=/home/Filip/.config/systemd/user/

@@ -12,7 +12,7 @@
 	addIngoredFile = false
 [includeIf "gitdir:PATH1"]
 	path = /home/Filip/.config/git/.gitconfig-configs
-[includeIf "gitdir:/PATH2"]
+[includeIf "gitdir:PATH2"]
         path = /home/Filip/.config/git/.gitconfig-lab
 
 
