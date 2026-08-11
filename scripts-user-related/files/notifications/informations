@@ -4,7 +4,6 @@
 "Try running commands using strings made up of special characters and using various methods to escape them. Are there differences between the way those methods behave?"
 'make video for youtube, about debian with all 4 version of boot loaders + installation'
 'od -c file shows hidden characters inside of file'
-'learn to sed bashrc to add characters in the beggining like #'
 'dd if=/dev/sda of=/path/to/the/file status=progress - used to copy whole block devices'
 "check out man systemd-boot && man loader"
 "fix boot hole or atleast inspect what is that for a hole"
@@ -36,3 +35,6 @@ umask -S   to see what are current default permissions to be set to created dire
 4755 is UID allows all files run with user who created it priviledges ( s )
 find -perm -444   looks for files with atleast specified permissions
 wheres can show where is binary + path's to its man pages or source code
+SUPER + O to go to obsidian
+Add rsync to most important files like hyprland config files, and kitty
+sed -i 's/\xA0/ /g' twoj_skrypt.sh    to delete invisible spaces 

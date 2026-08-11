@@ -7,35 +7,95 @@ create_sys_links() {
 	ln -sf "$source" "$target"
 }
 
+hostname="$(< /etc/hostname)"
 
-for i in .*;do
-	
-	case $i in 
-		".") 
-			continue
-			;;
-		"..")
-			continue
-			;;
-		".setup.swp")
-			continue
-			;;
-		".gitconfig-configs"|".gitconfig-lab")
-			if [[ ! -d ~/.config/git ]];then
-			     mkdir -p ~/.config/git
-			fi
-			create_sys_links "$PWD/$i" "${path:-$HOME}/.config/git"
-			;;
-		"export_extra_path")
-			continue
-			;;
-		"kitty.conf")
-i			[[ ! -d ~/.config/kitty ]] && mkdir -p ~/.config/kitty
-			create_sys_links "$PWD/$i" "${path:-$HOME}/.config/kitty"
-			cp "$PWD/files/kitty/background.jpg" "${path:-$HOME}/.config/kitty"
-			;;
-		*)
-			create_sys_links "$PWD/$i" "${path:-$HOME}"
-			;;
-	esac
-done
+if [[ "$hostname" == "archlinux" ]]; then
+	for i in .* * ; do
+		
+		case "$i" in
+			
+			"."|".."|".setup.swp"|"setup")
+				continue
+				;;
+
+			".gitconfig")
+                                cp "$i" "${HOME}"
+                                sed -Ei "s|PATH1|$(echo ${configs_path})|" ~/.gitconfig && sed -Ei "s|PATH2|$(echo ${lab_path})|" ~/.gitconfig
+                                ;;
+
+			".gitconfig-configs"|".gitconfig-lab")
+				if [[ ! -d ~/.config/git ]]; then
+					mkdir -p ~/.config/git
+				fi
+				echo "gitconfig-specials added"
+				create_sys_links "$PWD/$i" "${path:-$HOME}/.config/git"
+				echo "git config added"
+				;;
+
+			"export_extra_path")
+				continue
+				;;
+
+			"kitty.conf")
+				echo "Do i want to overwrite kitty.conf ?"
+				read answer
+				if [[ "${answer}" == "yes" ]]; then
+					[[ ! -d ~/.config/kitty ]] && mkdir -p ~/.config/kitty
+					create_sys_links "$PWD/$i" "${path:-$HOME}/.config/kitty"
+					cp "$PWD/files/kitty/background.jpg" "${path:-$HOME}/.config/kitty"
+					echo "kitty added"
+				else
+					continue
+				fi
+				;;
+
+			"tmux.conf")
+				echo "do i want to overwrite tmux.conf?"
+				read answear
+				if [[ "${answear}" == "yes" ]];then
+					[[ ! -d ~/.config/tmux ]] && mkdir -p ~/.config/tmux
+					create_sys_links "$PWD/$i" "${path:-$HOME}/.config/tmux"
+					echo "tmux.conf added"
+				else
+					continue
+				fi
+				;;
+			*)
+				create_sys_links "$PWD/$i" "${path:-$HOME}"
+				;;
+		esac
+	done
+elif [[ "$hostname" == "home-lab" ]]; then
+	for i in .* *; do
+		case "$i" in
+
+			"files"|"tmux.conf"|"kitty.conf"|"export_extra_path"|"."|".."|".setup.swp"|"setup")
+				continue
+				;;
+
+			".bashrc"|".bash_profile")
+				create_sys_links "$PWD/$i" "${path:-$HOME}"
+				echo "gitconfig bashrc and bash_profile added"
+				;;
+
+			".gitconfig-configs"|".gitconfig-lab")
+				if [[ ! -d ~/.config/git ]]; then
+					mkdir -p ~/.config/git
+				fi
+				echo "gitconfig-specials added"
+				;;
+
+			".gitconfig")
+				cp "$i" "${HOME}"
+				echo "configs repo: ${configs_path}    lab repo: ${lab_path} "
+				sed -Ei "s|PATH1|$(echo ${configs_path})|" ~/.gitconfig && sed -Ei "s|PATH2|$(echo ${lab_path})|" ~/.gitconfig
+				echo ".gitconfig added and paths exchanged"
+				;;
+			*)	
+				continue
+				;;
+		esac
+	done
+else
+	echo "something_wrong"
+fi

@@ -1,2 +1,4 @@
 #!/bin/bash
-echo "$1" >> /data/ubuntu-server-configs/scripts-user-related/files/notifications/informations
+path=/data/configs_and_scripts/scripts-user-related/files/notifications/informations
+echo "$1" >> "$path"
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ ! -d "${HOME}/.local/share/timerapp.v2/files" ]];then
+	mkdir -p "${HOME}/.local/share/timerapp.v2/files"
+fi
+
+ln -sf "${PWD}/timerapp.v2/app" ~/.local/bin/ && ln -sf "${PWD}/timerapp.v2/files/day-to-day.db" ~/.local/share/timerapp.v2/files/day-to-day.db 
+
+
