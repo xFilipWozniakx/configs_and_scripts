@@ -14,7 +14,7 @@ if [[ "$hostname" == "archlinux" ]]; then
 		
 		case "$i" in
 			
-			"."|".."|".setup.swp"|"setup")
+			"."|".."|".setup.swp"|"setup"|"files")
 				continue
 				;;
 
