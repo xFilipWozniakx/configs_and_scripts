@@ -11,33 +11,27 @@ hostname="$(< /etc/hostname)"
 
 if [[ "$hostname" == "archlinux" ]]; then
 	for i in .* * ; do
-		
 		case "$i" in
-			
-			"."|".."|".setup.swp"|"setup"|"files")
+			"."|".."|".setup.swp"|"setup"|"files"|"export_extra_path")
 				continue
 				;;
 
 			".gitconfig")
-                                
-				# needs configs_path exported path to configs&scripts and path to lab repo exported as lab_path 
+				# needs configs_path exported path to configs&scripts and path to lab repo exported as lab_path
 				# otherwise will not work properly
 				echo o "configs repo: ${configs_path}    lab repo: ${lab_path} "
-                                sed -Ei "s|(.* \"gitdir:)PATH1(.*)|\1${configs_path}\2|;s|(.* \"gitdir:)PATH2(.*)|\1${lab_path}\2|" ~/.gitconfig
-                                sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
-                                echo ".gitconfig added and paths exchanged"
-
+        cp "$i" "${HOME}"
+        sed -Ei "s|(.* \"gitdir:)PATH1(.*)|\1${configs_path}\2|;s|(.* \"gitdir:)PATH2(.*)|\1${lab_path}\2|" ~/.gitconfig
+        sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
+        echo ".gitconfig added and paths exchanged"
 				;;
+
 			".gitconfig-configs"|".gitconfig-lab")
 				if [[ ! -d ~/.config/git ]]; then
 					mkdir -p ~/.config/git
 				fi
 				create_sys_links "$PWD/$i" "${path:-$HOME}/.config/git"
 				echo "gitconfig-specials added"
-				;;
-
-			"export_extra_path")
-				continue
 				;;
 
 			"kitty.conf")
@@ -79,7 +73,7 @@ elif [[ "$hostname" == "home-lab" ]]; then
 
 			".bashrc"|".bash_profile")
 				create_sys_links "$PWD/$i" "${path:-$HOME}"
-				echo "gitconfig bashrc and bash_profile added"
+				echo "bashrc and bash_profile added"
 				;;
 
 			".gitconfig-configs"|".gitconfig-lab")
@@ -91,15 +85,13 @@ elif [[ "$hostname" == "home-lab" ]]; then
 				;;
 
 			".gitconfig")
-				cp "$i" "${HOME}"
-				echo "configs repo: ${configs_path}    lab repo: ${lab_path} "
+        echo o "configs repo: ${configs_path}    lab repo: ${lab_path} "
+        cp "$i" "${HOME}"
 				sed -Ei "s|(.* \"gitdir:)PATH1(.*)|\1${configs_path}\2|;s|(.* \"gitdir:)PATH2(.*)|\1${lab_path}\2|" ~/.gitconfig
 				sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
-
 				echo ".gitconfig added and paths exchanged"
-
 				;;
-			*)	
+      *)
 				continue
 				;;
 		esac
