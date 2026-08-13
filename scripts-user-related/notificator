@@ -3,11 +3,12 @@
 # My little automated notification sender made for hyprland to remind me of what needs to be done on system / what needs to be solidified
 
 informations="/data/configs_and_scripts/scripts-user-related/files/notifications/informations"
+reminder="/data/configs_and_scripts/scripts-user-related/files/notifications/reminder"
 
 while true; do
 	if [[ -s "$informations" ]]; then
 		information=$(shuf -n 1 "$informations")
-		notify-send -t 5000 "${information}"
+		notify-send -t 5000 "${remider}"
 	else
 		nofity-send -t 5000 "Error: file empty or missing"
 	fi

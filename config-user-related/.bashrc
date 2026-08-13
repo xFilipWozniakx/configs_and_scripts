@@ -4,6 +4,17 @@ PS1='\[\e[33m\]\h: $\[\e[0m\] \[\e[31m\]\w\[\e[0m\]\n   \[\e[32m\]'
 
 # Aliases:
 alias ls="ls -lah --color=always" 
+alias k="kubectl"
+alias vim="nvim -u ~/.vimrc"
+
+# editors:
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+#bash completion
+source /usr/share/bash-completion/bash_completion
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
 
 # bash_history
 HISTFILE=~/.bash_history
@@ -16,7 +27,7 @@ OBSIDIAN_NOTES_KEY="$HOME/.ssh/ssh_keys/obsidian-notes"
 LAB_KEY="$HOME/.ssh/ssh_keys/lab-repo"
 
 #Exports:
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin"
 export service=/home/Filip/.config/systemd/user/
 
 #Alias:

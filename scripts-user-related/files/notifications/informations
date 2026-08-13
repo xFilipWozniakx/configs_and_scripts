@@ -38,3 +38,4 @@ wheres can show where is binary + path's to its man pages or source code
 SUPER + O to go to obsidian
 Add rsync to most important files like hyprland config files, and kitty
 sed -i 's/\xA0/ /g' twoj_skrypt.sh    to delete invisible spaces 
+rdctl  used to manage rancher-desktop app
