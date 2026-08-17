@@ -1,1 +1,19 @@
 hl.bind("SUPER + Z", hl.dsp.exec_cmd("/home/Filip/.local/bin/crow_translate"))
+
+--- obs settings
+hl.bind("SUPER + F1", hl.dsp.send_shortcut({ mods = "SUPER", key = "F1", window = "class:^(com\\.obsproject\\.Studio)$" })) 
+hl.bind("SUPER + F2", hl.dsp.send_shortcut({ mods = "SUPER", key = "F2", window = "class:^(com\\.obsproject\\.Studio)$" }))
+hl.bind("SUPER + F3", hl.dsp.send_shortcut({ mods = "SUPER", key = "F3", window = "class:^(com\\.obsproject\\.Studio)$" }))
+hl.bind("SUPER + F4", hl.dsp.send_shortcut({ mods = "SUPER", key = "F4", window = "class:^(com\\.obsproject\\.Studio)$" }))
+
+--- switching between workspaces ALT + arrows
+hl.bind("ALT + right", hl.dsp.focus({ workspace = "r+1" }))
+hl.bind("ALT + left", hl.dsp.focus({ workspace = "r-1" }))
+
+--- switching focus with vim keys ---
+hl.bind("SUPER + H",  hl.dsp.focus({ direction = "left" }))
+hl.bind("SUPER + L", hl.dsp.focus({ direction = "right" }))
+hl.bind("SUPER + K", hl.dsp.focus({ direction = "up" }))
+hl.bind("SUPER + J", hl.dsp.focus({ direction = "down" }))
+
+
