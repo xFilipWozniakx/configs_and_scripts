@@ -20,6 +20,8 @@ alias grep='grep -i'
 alias infor='vim /data/configs_and_scripts/scripts-user-related/files/notifications/informations'
 alias sr='source ~/.bashrc'
 alias ls="ls -lah --color=always"
+alias gs="git status"
+alias gc="git commit -m"
 
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
