@@ -8,6 +8,7 @@ PS1='\[\e[33m\]\h: $\[\e[0m\] \[\e[31m\]\w\[\e[0m\]\n   \[\e[32m\]'
 export EDITOR="nvim"
 export VISUAL="nvim"
 export LOCAL=~/.local/bin
+export SSH="$HOME/.ssh/ssh_keys"
 
 # bash_history
 HISTCONTROL="ls:cd:clear"
@@ -22,6 +23,8 @@ alias sr='source ~/.bashrc'
 alias ls="ls -lah --color=always"
 alias gs="git status"
 alias gc="git commit -m"
+alias h="helm"
+alias k="kubectl"
 
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
@@ -54,8 +57,6 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   alias lpic='papers ~/Documents/LPIC/LPI-Learning-Material-101-500-en.pdf'
   alias image='swayimg'
   alias lab='ssh -i ~/.ssh/ssh_keys/arch_linux superuser@home-lab'
-  alias h="helm"
-  alias k="kubectl"
   alias vim="nvim -u ~/.vimrc"
   alias homarr='k port-forward -n homarr homarr-57d8df498d-mrkvj 8080:7575 &'
   #show me the key

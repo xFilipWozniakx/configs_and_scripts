@@ -71,9 +71,9 @@ elif [[ "$hostname" == "home-lab" ]]; then
 				continue
 				;;
 
-			".bashrc"|".bash_profile")
+			".bashrc"|".bash_profile"|".vimrc")
 				create_sys_links "$PWD/$i" "${path:-$HOME}"
-				echo "bashrc and bash_profile added"
+				echo "bashrc and bash_profile and vimrc added"
 				;;
 
 			".gitconfig-configs"|".gitconfig-lab")
@@ -91,7 +91,7 @@ elif [[ "$hostname" == "home-lab" ]]; then
 				sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
 				echo ".gitconfig added and paths exchanged"
 				;;
-      *)
+      		*)
 				continue
 				;;
 		esac
