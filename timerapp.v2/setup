@@ -1,9 +1,10 @@
 #!/bin/bash
+# not tested
 
 if [[ ! -d "${HOME}/.local/share/timerapp.v2/files" ]];then
 	mkdir -p "${HOME}/.local/share/timerapp.v2/files"
 fi
 
-ln -sf "${PWD}/timerapp.v2/app" ~/.local/bin/ && ln -sf "${PWD}/timerapp.v2/files/day-to-day.db" ~/.local/share/timerapp.v2/files/day-to-day.db 
+ln -sf "$PWD/app" "$HOME/.local/bin/app" && ln -sf "$PWD/files/day-to-day.db" "$HOME/.local/share/timerapp.v2/files/day-to-day.db"
 
 

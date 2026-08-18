@@ -1,19 +1,19 @@
 #!/bin/bash
 
-DB_FILE="./files/day-to-day.db"
+DB_FILE="$HOME/.local/share/timerapp.v2/files/day-to-day.db"
+
 
 # Ensure table exists
 sqlite3 "$DB_FILE" "CREATE TABLE IF NOT EXISTS activities (
-    id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    start_time TEXT NOT NULL, 
-    end_time TEXT, 
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    start_time TEXT NOT NULL,
+    end_time TEXT,
     activity TEXT NOT NULL
 );"
 
 # --- FUNCTION 1: Daily Summary ---
 show_daily_summary() {
     read -p "Enter date (YYYY-MM-DD) [Leave empty for Today]: " TARGET_DATE
-    
     # Default to today if input is empty
     if [[ -z "$TARGET_DATE" ]]; then
         TARGET_DATE=$(date "+%Y-%m-%d")

@@ -39,3 +39,9 @@ SUPER + O to go to obsidian
 Add rsync to most important files like hyprland config files, and kitty
 sed -i 's/\xA0/ /g' twoj_skrypt.sh    to delete invisible spaces 
 rdctl  used to manage rancher-desktop app
+:join-pane -h -s :PANE_NUMBER  tmux to join panes
+in tmux :list-commands to see all available commands
+vim -0 ( open horizontaly) file1 file2 - to open 2 documents on one pane with vim
+in visual mode ctrl+w and -> l <- h      (vim switching between documents)
+add vi keys to brave to be able to rewind video with h and l
+create app in docker that will take all temps from devs and display them in html/css so that i can plug in to homarr

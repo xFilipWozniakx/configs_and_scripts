@@ -3,9 +3,11 @@
 PS1='\[\e[33m\]\h: $\[\e[0m\] \[\e[31m\]\w\[\e[0m\]\n   \[\e[32m\]'
 
 
+
 # editors:
 export EDITOR="nvim"
 export VISUAL="nvim"
+export LOCAL=~/.local/bin
 
 # bash_history
 HISTCONTROL="ls:cd:clear"
@@ -27,6 +29,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 	export configs_path="/data/configs_and_scripts"
   export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin"
   export service=/home/Filip/.config/systemd/user/
+  alias CONFIG="$HOME/.config/hypr"
 
   UBUNTU_CONFIG_KEY="$HOME/.ssh/ssh_keys/master-key"
   OBSIDIAN_NOTES_KEY="$HOME/.ssh/ssh_keys/obsidian-notes"
@@ -49,11 +52,10 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   alias lpic='papers ~/Documents/LPIC/LPI-Learning-Material-101-500-en.pdf'
   alias image='swayimg'
   alias lab='ssh -i ~/.ssh/ssh_keys/arch_linux superuser@home-lab'
-
+  alias h="helm"
   alias k="kubectl"
   alias vim="nvim -u ~/.vimrc"
-
-
+  alias homarr='k port-forward -n homarr homarr-57d8df498d-mrkvj 8080:7575 &'
   #show me the key
   alias showmethekey="showmethekey-gtk -A" 
   alias showmethekey-s="gsettings set one.alynx.showmethekey clickable false"
