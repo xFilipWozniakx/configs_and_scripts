@@ -1,2 +1,1 @@
-# configs and scripts needed for fully functional workflow
-### In use on both of my machines
+# configs for my linux system's and scripts that enchance my workflow.
