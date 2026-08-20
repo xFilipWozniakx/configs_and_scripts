@@ -22,6 +22,7 @@ alias gs="git status"
 alias gc="git commit -m"
 alias h="helm"
 alias lz="lazygit"
+alias d="docker"
 
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
 
@@ -38,10 +39,12 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   LAB_CLUSTER="$SSH/lab-cluster"
 
   #bash completion
-  source /usr/share/bash-completion/bash_completion
-  source <(kubectl completion bash)
+  . /usr/share/bash-completion/bash_completion
+  . <(kubectl completion bash)
   complete -o default -F __start_kubectl k
   . <(flux completion bash)
+  complete -o default -F __start_docker d
+  . <(docker completion bash)
 
   export KUBE_CONFIG="$HOME/.config/kube/config/k3s.yaml"
   alias f="flux --kubeconfig="$KUBE_CONFIG""
