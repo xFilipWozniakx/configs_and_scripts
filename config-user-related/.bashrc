@@ -2,8 +2,6 @@
 #Prompt settings:
 PS1='\[\e[33m\]\h: $\[\e[0m\] \[\e[31m\]\w\[\e[0m\]\n   \[\e[32m\]'
 
-
-
 # editors:
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -24,7 +22,6 @@ alias ls="ls -lah --color=always"
 alias gs="git status"
 alias gc="git commit -m"
 alias h="helm"
-alias k="kubectl"
 
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
@@ -34,19 +31,27 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 	export configs_path="/data/configs_and_scripts"
   export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin"
   export service=/home/Filip/.config/systemd/user/
-  alias CONFIG="$HOME/.config/hypr"
-
+  export CONFIG="$HOME/.config/hypr"
   UBUNTU_CONFIG_KEY="$HOME/.ssh/ssh_keys/master-key"
   OBSIDIAN_NOTES_KEY="$HOME/.ssh/ssh_keys/obsidian-notes"
   LAB_KEY="$HOME/.ssh/ssh_keys/lab-repo"
+  LAB_CLUSTER="$HOME/.ssh/ssh_keys/lab-cluster"
 
+  # GITHUB CLI TOKEN
+  export GITHUB_TOKEN="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"
+  export GITHUB_USER="xfilipwozniakx"
 
   #bash completion
   source /usr/share/bash-completion/bash_completion
   source <(kubectl completion bash)
   complete -o default -F __start_kubectl k
+  . <(flux completion bash)
 
-
+  export KUBE_CONFIG="$HOME/.config/kube/config/k3s.yaml"
+  alias f="flux --kubeconfig="$KUBE_CONFIG""
+  alias k="kubectl --kubeconfig="$KUBE_CONFIG""
+  alias k9s="k9s --kubeconfig="$KUBE_CONFIG""
+  
   # aliases on host
   alias pi="ssh -i ~/.ssh/ssh_keys/alpine-pi subadmin@10.0.0.15"
   alias python3.13=/opt/python3custom/python3.13.15/bin/python3
@@ -60,7 +65,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   alias vim="nvim -u ~/.vimrc"
   alias homarr='k port-forward -n homarr homarr-57d8df498d-mrkvj 8080:7575 &'
   #show me the key
-  alias showmethekey="showmethekey-gtk -A" 
+  alias showmethekey="showmethekey-gtk -A"
   alias showmethekey-s="gsettings set one.alynx.showmethekey clickable false"
 
   # tmux && agent
@@ -74,5 +79,5 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 elif [[ "$HOSTNAME" == "home-lab" ]];then
 	export lab_path="${HOME}/lab"
 	export configs_path="${HOME}/configs-scripts"
-  # fix ssh-agent on ubuntu server
+  alias k="kubectl"
 fi
