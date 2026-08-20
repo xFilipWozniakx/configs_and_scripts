@@ -16,30 +16,25 @@ shopt -s histappend
 
 #Alias:
 alias grep='grep -i'
-alias infor='vim /data/configs_and_scripts/scripts-user-related/files/notifications/informations'
 alias sr='source ~/.bashrc'
 alias ls="ls -lah --color=always"
 alias gs="git status"
 alias gc="git commit -m"
 alias h="helm"
 
+[[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
+
+
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 
   #ENV VARIABLES HOST
-  export lab_path="/data/lab"
-	export configs_path="/data/configs_and_scripts"
   export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin"
-  export service=/home/Filip/.config/systemd/user/
   export CONFIG="$HOME/.config/hypr"
-  UBUNTU_CONFIG_KEY="$HOME/.ssh/ssh_keys/master-key"
-  OBSIDIAN_NOTES_KEY="$HOME/.ssh/ssh_keys/obsidian-notes"
-  LAB_KEY="$HOME/.ssh/ssh_keys/lab-repo"
-  LAB_CLUSTER="$HOME/.ssh/ssh_keys/lab-cluster"
-
-  # GITHUB CLI TOKEN
-  export GITHUB_TOKEN="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"
-  export GITHUB_USER="xfilipwozniakx"
+  UBUNTU_CONFIG_KEY="$SSH/master-key"
+  OBSIDIAN_NOTES_KEY="$SSH/obsidian-notes"
+  LAB_KEY="$SSH/lab-repo"
+  LAB_CLUSTER="$SSH/lab-cluster"
 
   #bash completion
   source /usr/share/bash-completion/bash_completion
@@ -51,7 +46,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   alias f="flux --kubeconfig="$KUBE_CONFIG""
   alias k="kubectl --kubeconfig="$KUBE_CONFIG""
   alias k9s="k9s --kubeconfig="$KUBE_CONFIG""
-  
+
   # aliases on host
   alias pi="ssh -i ~/.ssh/ssh_keys/alpine-pi subadmin@10.0.0.15"
   alias python3.13=/opt/python3custom/python3.13.15/bin/python3
