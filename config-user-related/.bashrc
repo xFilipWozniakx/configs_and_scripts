@@ -23,6 +23,7 @@ alias gc="git commit -m"
 alias h="helm"
 alias lz="lazygit"
 alias d="docker"
+alias ip="ip --color=always"
 
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
 
