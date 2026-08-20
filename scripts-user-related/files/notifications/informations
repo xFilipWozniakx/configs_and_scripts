@@ -45,3 +45,6 @@ vim -0 ( open horizontaly) file1 file2 - to open 2 documents on one pane with vi
 in visual mode ctrl+w and -> l <- h      (vim switching between documents)
 add vi keys to brave to be able to rewind video with h and l
 create app in docker that will take all temps from devs and display them in html/css so that i can plug in to homarr
+\![alt-text](link) to post picture in obsidian / markdown
+add persistent storage for my rasberry pi that i host blog on, and create script to connect to it at boot
+create db for notificator and separate folders for msgs
