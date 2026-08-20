@@ -21,6 +21,7 @@ alias ls="ls -lah --color=always"
 alias gs="git status"
 alias gc="git commit -m"
 alias h="helm"
+alias lz="lazygit"
 
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
 
