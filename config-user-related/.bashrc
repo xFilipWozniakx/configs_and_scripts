@@ -13,14 +13,14 @@ HISTCONTROL="ls:cd:clear"
 HISTFILE=~/.bash_history
 HISTSIZE=5000
 shopt -s histappend
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 #Alias:
-alias grep='grep -i'
+alias grep='grep -i --color=always'
 alias sr='source ~/.bashrc'
 alias ls="ls -lah --color=always"
 alias gs="git status"
 alias gc="git commit -m"
-alias h="helm"
 alias lz="lazygit"
 alias d="docker"
 
@@ -30,26 +30,33 @@ alias d="docker"
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 
+  #QUICK MOVING
+  export LAB="/data/k3s+flux"
+  export BITCOIN="/home/Filip/Projects/coinmarketcap-api"
   #ENV VARIABLES HOST
   export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin"
   export CONFIG="$HOME/.config/hypr"
   UBUNTU_CONFIG_KEY="$SSH/master-key"
   OBSIDIAN_NOTES_KEY="$SSH/obsidian-notes"
   LAB_KEY="$SSH/lab-repo"
-  LAB_CLUSTER="$SSH/lab-cluster"
+  alias reco="flux reconcile kustomization apps"
 
   #bash completion
   . /usr/share/bash-completion/bash_completion
   . <(kubectl completion bash)
   complete -o default -F __start_kubectl k
+  complete -o default -F __start_flux f
   . <(flux completion bash)
   complete -o default -F __start_docker d
   . <(docker completion bash)
+  . <(helm completion bash)
+  complete -o default -F __start_helm h
 
-  export KUBE_CONFIG="$HOME/.config/kube/config/k3s.yaml"
-  alias f="flux --kubeconfig="$KUBE_CONFIG""
-  alias k="kubectl --kubeconfig="$KUBE_CONFIG""
-  alias k9s="k9s --kubeconfig="$KUBE_CONFIG""
+  export KUBECONFIG="$HOME/.config/kube/config/k3s.yaml"
+  alias f="flux"
+  alias k="kubectl"
+  alias k9s="k9s"
+  alias h="helm"
 
   # aliases on host
   alias pi="ssh -i ~/.ssh/ssh_keys/alpine-pi subadmin@10.0.0.15"
@@ -62,7 +69,6 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   alias image='swayimg'
   alias lab='ssh -i ~/.ssh/ssh_keys/arch_linux superuser@home-lab'
   alias vim="nvim -u ~/.vimrc"
-  alias homarr='k port-forward -n homarr homarr-57d8df498d-mrkvj 8080:7575 &'
   #show me the key
   alias showmethekey="showmethekey-gtk -A"
   alias showmethekey-s="gsettings set one.alynx.showmethekey clickable false"
