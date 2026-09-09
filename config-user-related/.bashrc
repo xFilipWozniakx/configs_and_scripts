@@ -9,7 +9,8 @@ export LOCAL=~/.local/bin
 export SSH="$HOME/.ssh/ssh_keys"
 
 # bash_history
-HISTCONTROL="ls:cd:clear"
+HISTCONTROL="ignoreboth"
+HISTIGNORE="ls:cd:clear:lab:exit:ls:history:pass:nvim"
 HISTFILE=~/.bash_history
 HISTSIZE=5000
 shopt -s histappend
@@ -30,6 +31,8 @@ alias d="docker"
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 
+  #PROJECTS
+  export ftp="/home/Filip/Projects/my-ftp/docker-build"
   #QUICK MOVING
   export LAB="/data/k3s+flux"
   export BITCOIN="/home/Filip/Projects/coinmarketcap-api"
@@ -40,6 +43,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   OBSIDIAN_NOTES_KEY="$SSH/obsidian-notes"
   LAB_KEY="$SSH/lab-repo"
   alias reco="flux reconcile kustomization apps"
+
 
   #bash completion
   . /usr/share/bash-completion/bash_completion
@@ -72,8 +76,13 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   #show me the key
   alias showmethekey="showmethekey-gtk -A"
   alias showmethekey-s="gsettings set one.alynx.showmethekey clickable false"
+  alias wl="wl-copy"
 
-  # tmux && agent
+  # PASS ALIASES:
+  alias piad="pass show --clip pi/subadmin"
+  alias clad="pass show --clip cluster/superuser"
+
+ # tmux && agent
 	if [[ -z "$TMUX" && $- == *i* ]]; then
 	        if [[ $(pgrep ssh-agent | wc -l) -eq 0 ]]; then
 			eval "$(ssh-agent 2>/dev/null)" && ssh-add "$OBSIDIAN_NOTES_KEY" && ssh-add "$UBUNTU_CONFIG_KEY" && ssh-add "$LAB_KEY"
