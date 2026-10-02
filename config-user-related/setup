@@ -66,17 +66,18 @@ for i in .* *; do
     ;;
   "tmux.conf")
     echo "transfer tmux.conf to its config?"
-    select an in yes no; do 
-      if [[ "$an" == "yes" ]];then
+    select an in yes no; do
+      if [[ "$an" == "yes" ]]; then
         if [[ -d "$HOME/.config/tmux" ]]; then
           create_sys_links "$PWD/$i" "$HOME/.config/tmux/$i"
-        else 
+        else
           echo "tmux dir doesnt exists"
         fi
-      elif [[ "$an" == "no" ]];then
+      elif [[ "$an" == "no" ]]; then
         break
       fi
     done
+    ;;
 
   *)
     #create_sys_links "$PWD/$i" "${path:-$HOME}"

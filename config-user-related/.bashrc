@@ -44,6 +44,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   OBSIDIAN_NOTES_KEY="$SSH/obsidian-notes"
   LAB_KEY="$SSH/lab-repo"
   DEVPOD_KEY="$SSH/dotfiles-nopass"
+  DOTFILES_KEY="$SSH/dotfiles"
 
   #bash completion
   . /usr/share/bash-completion/bash_completion
@@ -101,7 +102,7 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   # tmux && agent
   if [[ -z "$TMUX" && $- == *i* ]]; then
     if [[ $(pgrep ssh-agent | wc -l) -eq 0 ]]; then
-      eval "$(ssh-agent 2>/dev/null)" && ssh-add "$OBSIDIAN_NOTES_KEY" && ssh-add "$UBUNTU_CONFIG_KEY" && ssh-add "$LAB_KEY" && ssh-add "$DEVPOD_KEY"
+      eval "$(ssh-agent 2>/dev/null)" && ssh-add "$OBSIDIAN_NOTES_KEY" && ssh-add "$UBUNTU_CONFIG_KEY" && ssh-add "$LAB_KEY" && ssh-add "$DEVPOD_KEY" && ssh-add "$DOTFILES_KEY"
     fi
     exec tmux
     tmux set-environment -g SSH_AUTH_SOCK "$SSH_AUTH_SOCK" && tmux set-environment -g SSH_AGENT_PID "$SSH_AGENT_PID"

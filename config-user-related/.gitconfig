@@ -17,3 +17,5 @@
     path = "/home/Filip/.config/git/.gitconfig-k3s+flux"
 [includeIf "gitdir:/data/lab/"]
     path = "/home/Filip/.config/git/.gitconfig-lab"
+[includeIf "gitdir:/data/dotfiles/"]
+    path = "/home/Filip/.config/git/.gitconfig-dotfiles"
