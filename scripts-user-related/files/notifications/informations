@@ -44,7 +44,8 @@ in tmux :list-commands to see all available commands
 vim -0 ( open horizontaly) file1 file2 - to open 2 documents on one pane with vim
 in visual mode ctrl+w and -> l <- h      (vim switching between documents)
 add vi keys to brave to be able to rewind video with h and l
-create app in docker that will take all temps from devs and display them in html/css so that i can plug in to homarr
-\![alt-text](link) to post picture in obsidian / markdown
 add persistent storage for my rasberry pi that i host blog on, and create script to connect to it at boot
-create db for notificator and separate folders for msgs
+:r kubectl create secret generic db-encryption --from-literal=db-encryption-key=xxx -n default --dry-run=client -o yamlprogram to read output of binary into my filedocument open with nvim
+space f T to open terminal horizontaly in lazyvim
+type in terminal-emulator then esc 0 to activate vi keybingins if vi keybinding set up in .bashrc (set -o vi)
+devpod up . --ide none --dotfiles git@github.com:xFilipWozniakx/dotfiles --recreate

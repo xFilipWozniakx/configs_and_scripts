@@ -1,0 +1,6 @@
+[user]
+  name = Filip
+  email = filipwu95@gmail.com
+
+[core]
+  sshCommand = ssh -i /home/Filip/.ssh/ssh_keys/dotfiles

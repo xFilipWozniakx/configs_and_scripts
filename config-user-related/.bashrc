@@ -27,7 +27,6 @@ alias d="docker"
 
 [[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
 
-
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 
@@ -39,22 +38,29 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   #ENV VARIABLES HOST
   export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin"
   export CONFIG="$HOME/.config/hypr"
+
+  # KEYS_PATHS
   UBUNTU_CONFIG_KEY="$SSH/master-key"
   OBSIDIAN_NOTES_KEY="$SSH/obsidian-notes"
   LAB_KEY="$SSH/lab-repo"
-  alias reco="flux reconcile kustomization apps"
-
+  DEVPOD_KEY="$SSH/dotfiles-nopass"
 
   #bash completion
   . /usr/share/bash-completion/bash_completion
+
   . <(kubectl completion bash)
   complete -o default -F __start_kubectl k
+
   complete -o default -F __start_flux f
   . <(flux completion bash)
-  complete -o default -F __start_docker d
+
   . <(docker completion bash)
+  complete -o default -F __start_docker d
+
   . <(helm completion bash)
   complete -o default -F __start_helm h
+
+  . /data/completions/devpod_completion
 
   export KUBECONFIG="$HOME/.config/kube/config/k3s.yaml"
   alias f="flux"
@@ -72,26 +78,36 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   alias lpic='papers ~/Documents/LPIC/LPI-Learning-Material-101-500-en.pdf'
   alias image='swayimg'
   alias lab='ssh -i ~/.ssh/ssh_keys/arch_linux superuser@home-lab'
-  alias vim="nvim -u ~/.vimrc"
+  alias vim="nvim"
+  alias wl="wl-copy"
+  alias dc="docker-compose"
+  alias ls="eza -la --icons=always --total-size"
+  alias discord="/home/Filip/Downloads/discord/usr/share/discord/app-1.0.159/Discord"
+  alias reco="flux reconcile kustomization apps"
+  alias py="python3"
+
   #show me the key
   alias showmethekey="showmethekey-gtk -A"
   alias showmethekey-s="gsettings set one.alynx.showmethekey clickable false"
-  alias wl="wl-copy"
 
   # PASS ALIASES:
   alias piad="pass show --clip pi/subadmin"
   alias clad="pass show --clip cluster/superuser"
+  alias maps="pass show --clip filip/bw"
 
- # tmux && agent
-	if [[ -z "$TMUX" && $- == *i* ]]; then
-	        if [[ $(pgrep ssh-agent | wc -l) -eq 0 ]]; then
-			eval "$(ssh-agent 2>/dev/null)" && ssh-add "$OBSIDIAN_NOTES_KEY" && ssh-add "$UBUNTU_CONFIG_KEY" && ssh-add "$LAB_KEY"
-		fi
-		exec tmux
-		tmux set-environment -g SSH_AUTH_SOCK "$SSH_AUTH_SOCK" && tmux set-environment -g SSH_AGENT_PID "$SSH_AGENT_PID"
-	fi
-elif [[ "$HOSTNAME" == "home-lab" ]];then
-	export lab_path="${HOME}/lab"
-	export configs_path="${HOME}/configs-scripts"
+  #DEVPOD
+  alias start='devpod up . --recreate'
+
+  # tmux && agent
+  if [[ -z "$TMUX" && $- == *i* ]]; then
+    if [[ $(pgrep ssh-agent | wc -l) -eq 0 ]]; then
+      eval "$(ssh-agent 2>/dev/null)" && ssh-add "$OBSIDIAN_NOTES_KEY" && ssh-add "$UBUNTU_CONFIG_KEY" && ssh-add "$LAB_KEY" && ssh-add "$DEVPOD_KEY"
+    fi
+    exec tmux
+    tmux set-environment -g SSH_AUTH_SOCK "$SSH_AUTH_SOCK" && tmux set-environment -g SSH_AGENT_PID "$SSH_AGENT_PID"
+  fi
+elif [[ "$HOSTNAME" == "home-lab" ]]; then
+  export lab_path="${HOME}/lab"
+  export configs_path="${HOME}/configs-scripts"
   alias k="kubectl"
 fi

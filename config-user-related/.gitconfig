@@ -1,4 +1,3 @@
-# This is Git's per-user configuration file.
 [user]
 	name = Filip Wozniak
 	email = filipwu95@gmail.com
@@ -10,7 +9,11 @@
 	default = main
 [advice]
 	addIngoredFile = false
-[includeIf "gitdir:PATH1/"]
-	path = USERPATH1/.config/git/.gitconfig-configs
-[includeIf "gitdir:PATH2/"]
-        path = USERPATH2/.config/git/.gitconfig-lab
+[includeIf "gitdir:/data/configs_and_scripts/"]
+    path = "/home/Filip/.config/git/.gitconfig-configs"
+[includeIf "gitdir:/home/Filip/.password-store/"]
+    path = "/home/Filip/.config/git/.gitconfig-git-pass"
+[includeIf "gitdir:/data/k3s+flux/"]
+    path = "/home/Filip/.config/git/.gitconfig-k3s+flux"
+[includeIf "gitdir:/data/lab/"]
+    path = "/home/Filip/.config/git/.gitconfig-lab"

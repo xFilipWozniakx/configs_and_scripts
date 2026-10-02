@@ -1,101 +1,86 @@
 #!/usr/bin/bash
+# to work properly
+
+if ! command -v fd 2>&1 >/dev/null | command -v fzf 2>&1 >/dev/null; then
+  echo "Needs fd and fzf to work" && exit 1
+fi
+
+#PATHS
+gitconfig="$HOME/.config/git"
 
 # link config files to main directory
 create_sys_links() {
-	local source="$1"
-	local target="${2:-${path:-$HOME}}"
-	ln -sf "$source" "$target"
+  local source="$1"
+  local target="${2:-${path:-$HOME}}"
+  ln -svf "$source" "$target"
 }
 
-hostname="$(< /etc/hostname)"
+#Select dir for gitconfig
+select_dir() {
+  selected_dir=$(fd --type d --hidden . / | fzf)
 
-if [[ "$hostname" == "archlinux" ]]; then
-	for i in .* * ; do
-		case "$i" in
-			"."|".."|".setup.swp"|"setup"|"files"|"export_extra_path")
-				continue
-				;;
+  ## path to cfgs
+  ## /data/configs_and_scripts/config-user-related/gitconfig-files
 
-			".gitconfig")
-				# needs configs_path exported path to configs&scripts and path to lab repo exported as lab_path
-				# otherwise will not work properly
-				echo o "configs repo: ${configs_path}    lab repo: ${lab_path} "
-        cp "$i" "${HOME}"
-        sed -Ei "s|(.* \"gitdir:)PATH1(.*)|\1${configs_path}\2|;s|(.* \"gitdir:)PATH2(.*)|\1${lab_path}\2|" ~/.gitconfig
-        sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
-        echo ".gitconfig added and paths exchanged"
-				;;
+  cfg_info=$(
+    cat <<EOF
+[includeIf "gitdir:${selected_dir}/"]
+    path = "$HOME/.config/git/${i}"
+EOF
+  )
 
-			".gitconfig-configs"|".gitconfig-lab")
-				if [[ ! -d ~/.config/git ]]; then
-					mkdir -p ~/.config/git
-				fi
-				create_sys_links "$PWD/$i" "${path:-$HOME}/.config/git"
-				echo "gitconfig-specials added"
-				;;
+  cp "$HOME/.gitconfig" "$HOME/.old.gitconfig" >/dev/null 2>&1
+  echo "$cfg_info" >>"$HOME/.gitconfig" && echo "$i added to .gitconfig"
+}
 
-			"kitty.conf")
-				echo "Do i want to overwrite kitty.conf ?"
-				read answer
-				if [[ "${answer}" == "yes" ]]; then
-					[[ ! -d ~/.config/kitty ]] && mkdir -p ~/.config/kitty
-					create_sys_links "$PWD/$i" "${path:-$HOME}/.config/kitty"
-					cp "$PWD/files/kitty/background.jpg" "${path:-$HOME}/.config/kitty"
-					echo "kitty added"
-				else
-					continue
-				fi
-				;;
+for i in .* *; do
+  case "$i" in
+  "." | ".." | ".setup.swp" | "setup" | "files" | "export_extra_path")
+    continue
+    ;;
 
-			"tmux.conf")
-				echo "do i want to overwrite tmux.conf?"
-				read answear
-				if [[ "${answear}" == "yes" ]];then
-					[[ ! -d ~/.config/tmux ]] && mkdir -p ~/.config/tmux
-					create_sys_links "$PWD/$i" "${path:-$HOME}/.config/tmux"
-					echo "tmux.conf added"
-				else
-					continue
-				fi
-				;;
-			*)
-				create_sys_links "$PWD/$i" "${path:-$HOME}"
-				;;
-		esac
-	done
-elif [[ "$hostname" == "home-lab" ]]; then
-	for i in .* *; do
-		case "$i" in
+  ".gitconfig")
+    create_sys_links "$PWD/${i}" "$HOME/${i}"
+    ;;
 
-			"files"|"tmux.conf"|"kitty.conf"|"export_extra_path"|"."|".."|".setup.swp"|"setup")
-				continue
-				;;
+  ".gitconfig-"*)
+    if [[ ! -d "$gitconfig" ]]; then
+      mkdir -p "$gitconfig"
+    fi
+    if [[ -L "$gitconfig/${i}" ]]; then
+      echo "$i exists" && continue
+    else
+      echo "Add ${i} into ${gitconfig}/${i} ?"
+      select an in yes no; do
+        if [[ "$an" == "yes" ]]; then
+          echo "select path for repo ${i}... press enter to continue"
+          read forget
+          select_dir "$i"
+          create_sys_links "$PWD/$i" "${gitconfig}/${i}"
+          break
+        elif [[ "$an" == "no" ]]; then
+          break
+        fi
+      done
+    fi
+    ;;
+  "tmux.conf")
+    echo "transfer tmux.conf to its config?"
+    select an in yes no; do 
+      if [[ "$an" == "yes" ]];then
+        if [[ -d "$HOME/.config/tmux" ]]; then
+          create_sys_links "$PWD/$i" "$HOME/.config/tmux/$i"
+        else 
+          echo "tmux dir doesnt exists"
+        fi
+      elif [[ "$an" == "no" ]];then
+        break
+      fi
+    done
 
-			".bashrc"|".bash_profile"|".vimrc")
-				create_sys_links "$PWD/$i" "${path:-$HOME}"
-				echo "bashrc and bash_profile and vimrc added"
-				;;
-
-			".gitconfig-configs"|".gitconfig-lab")
-				if [[ ! -d ~/.config/git ]]; then
-					mkdir -p ~/.config/git
-				fi
-				create_sys_links "$PWD/$i" "${path:-$HOME}/.config/git"
-				echo "gitconfig-specials added"
-				;;
-
-			".gitconfig")
-        echo o "configs repo: ${configs_path}    lab repo: ${lab_path} "
-        cp "$i" "${HOME}"
-				sed -Ei "s|(.* \"gitdir:)PATH1(.*)|\1${configs_path}\2|;s|(.* \"gitdir:)PATH2(.*)|\1${lab_path}\2|" ~/.gitconfig
-				sed -Ei "s|(.*path.*= )USERPATH1(.*)|\1${HOME}\2|; s|(.*path.*= )USERPATH2(.*)|\1${HOME}\2|" ~/.gitconfig
-				echo ".gitconfig added and paths exchanged"
-				;;
-      		*)
-				continue
-				;;
-		esac
-	done
-else
-	echo "something_wrong"
-fi
+  *)
+    #create_sys_links "$PWD/$i" "${path:-$HOME}"
+    continue
+    ;;
+  esac
+done
