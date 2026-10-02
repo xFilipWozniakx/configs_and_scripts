@@ -1,4 +1,0 @@
-#!/bin/bash
-path=/data/configs_and_scripts/scripts-user-related/files/notifications/informations
-echo "$1" >> "$path"
-

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Works with vim : line
-
-while IFS= read -r line; do
-    echo "${1:-#} $line"
-done 

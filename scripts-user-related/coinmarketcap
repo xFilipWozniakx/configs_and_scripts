@@ -1,5 +1,0 @@
-#!/bin/bash
-API="09b9785f-ecf1-4a49-8602-580ad05cb439"
-wykonaj=$(sed -E "s/(.*)<api-key>(.*)/\1$API\2/")
-bash -c "$wykonaj" 1>/odpowiedz 2>&1 
-

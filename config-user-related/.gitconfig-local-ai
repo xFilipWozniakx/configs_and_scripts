@@ -1,7 +1,0 @@
-[core]
-	sshCommand = "ssh -i /home/Filip/.ssh/ssh_keys/local-ai -o IdentitiesOnly=yes"
-[user]
-	email = filipwu95@gmail.com
-	name = Filip Wozniak
-
-

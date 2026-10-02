@@ -1,6 +1,0 @@
-[core]
-	sshCommand = "ssh -i ~/.ssh/ssh_keys/lab-repo -o IdentitiesOnly=yes"
-[user]
-	email = filipwu95@gmail.com
-	name = Filip Wozniak
-
