@@ -17,5 +17,11 @@
     path = "/home/Filip/.config/git/.gitconfig-k3s+flux"
 [includeIf "gitdir:/data/lab/"]
     path = "/home/Filip/.config/git/.gitconfig-lab"
+[includeIf "gitdir:/data/lab-python3/lab/"]
+    path = "/home/Filip/.config/git/.gitconfig-lab"
 [includeIf "gitdir:/data/dotfiles/"]
-    path = "/home/Filip/.config/git/.gitconfig-dotfiles"
+  path = "/home/Filip/.config/git/.gitconfig-dotfiles"
+[includeIf "gitdir:/data/lazyvim_cfg/configs_and_scripts/"]
+  path = "/home/Filip/.config/git/.gitconfig-configs"
+
+
