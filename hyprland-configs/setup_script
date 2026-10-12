@@ -1,0 +1,20 @@
+#!/bin/bash
+HYPR_APPS="/data/configs_and_scripts/hyprland-configs/"
+HYPR_CFGS="/data/configs_and_scripts/hyprland-configs/cfgs"
+
+for i in *; do
+  case "$i" in
+  ".setup_script.swp" | "setup_script")
+    continue
+    ;;
+  esac
+
+  if [[ -d "$i" ]]; then
+    for y in "$i/"*; do
+      [[ -f "$y" ]] || continue
+      ln -fs "$HYPR_APPS/$y" "$HOME/.config/hypr/cfgs/"
+    done
+  elif [[ -f "$i" ]]; then
+    ln -sf "$HYPR_APPS/$i" "$HOME/.config/hypr/"
+  fi
+done

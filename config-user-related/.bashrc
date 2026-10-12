@@ -30,11 +30,10 @@ alias d="docker"
 nick=$(whoami)
 if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
 
-  #PROJECTS
-  export ftp="/home/Filip/Projects/my-ftp/docker-build"
   #QUICK MOVING
   export LAB="/data/k3s+flux"
   export BITCOIN="/home/Filip/Projects/coinmarketcap-api"
+
   #ENV VARIABLES HOST
   export PATH="$PATH:$HOME/.local/bin:$HOME/.rd/bin"
   export CONFIG="$HOME/.config/hypr"
@@ -108,7 +107,5 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
     tmux set-environment -g SSH_AUTH_SOCK "$SSH_AUTH_SOCK" && tmux set-environment -g SSH_AGENT_PID "$SSH_AGENT_PID"
   fi
 elif [[ "$HOSTNAME" == "home-lab" ]]; then
-  export lab_path="${HOME}/lab"
-  export configs_path="${HOME}/configs-scripts"
   alias k="kubectl"
 fi
