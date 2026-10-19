@@ -20,11 +20,7 @@ hl.bind("SUPER + J", hl.dsp.focus({ direction = "down" }))
 hl.bind("SUPER + SHIFT + Q", hl.dsp.exec_cmd("brave"))
 
 --- search in brave ---
-hl.bind("SUPER + F", function()
-    hl.dispatch(hl.dsp.focus({
-        window = "class:^(brave-browser)$"
-    }))
-
+hl.bind("SUPER + O", function() 
     hl.dispatch(hl.dsp.send_key_state({
         mods = "CTRL",
         key = "L",
@@ -44,3 +40,7 @@ hl.bind("SUPER + F", function()
         type = "oneshot"
     })
 end)
+
+-- obsidian -- 
+hl.bind("SUPER + K", hl.dsp.focus({ window = "class:^(md.obsidian.Obsidian)$"}))
+
