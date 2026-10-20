@@ -1,4 +1,9 @@
 #!/bin/bash
-path=/data/configs_and_scripts/scripts-user-related/files/notifications/informations
-echo "$1" >> "$path"
+path_info="/data/configs_and_scripts/scripts-user-related/files/notifications/informations"
+path_todo="/data/configs_and_scripts/scripts-user-related/files/notifications/todolist"
 
+if [[ "$2" == "" ]]; then
+  echo "$1" >>"$path_info"
+else
+  echo "$1" >>"$path_todo"
+fi

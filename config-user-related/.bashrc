@@ -95,6 +95,11 @@ if [[ "$HOSTNAME" == "archlinux" && "$nick" == "Filip" ]]; then
   alias clad="pass show --clip cluster/superuser"
   alias maps="pass show --clip filip/bw"
 
+  #DOCKER BUILDING PHOTO_SYNC
+  export photo="photo_sync:v0.1.0"
+  alias db="docker buildx build -t $photo ."
+  alias dbb="docker run -it --rm --name test-photo photo_sync:v0.1.0 bash"
+
   #DEVPOD
   alias start='devpod up . --recreate'
 

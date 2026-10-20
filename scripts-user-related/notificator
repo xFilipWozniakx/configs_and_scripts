@@ -5,12 +5,11 @@
 informations="/data/configs_and_scripts/scripts-user-related/files/notifications/informations"
 
 while true; do
-	if [[ -s "$informations" ]]; then
-		information=$(shuf -n 1 "$informations")
-		notify-send -t 5000 "${information}"
-	else
-		nofity-send -t 5000 "Error: file empty or missing"
-	fi
-	sleep 600
+  if [[ -s "$informations" ]]; then
+    information=$(shuf -n 1 "$informations")
+    notify-send -t 5000 "${information}"
+  else
+    nofity-send -t 5000 "Error: file empty or missing"
+  fi
+  sleep 600
 done
-

@@ -42,5 +42,5 @@ hl.bind("SUPER + O", function()
 end)
 
 -- obsidian -- 
-hl.bind("SUPER + K", hl.dsp.focus({ window = "class:^(md.obsidian.Obsidian)$"}))
+hl.bind("SUPER + O", hl.dsp.focus({ window = "class:^(md.obsidian.Obsidian)$"}))
 
