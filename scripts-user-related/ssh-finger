@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# takes pub key and prints fingerprint
+# $1 == path to pub
+
+if [[ "$#" -ne 1 ]]; then
+  echo "USE: $0 PATH_TO_KEY "
+  exit 1
+fi
+
+ssh-keygen -yf "$1" | ssh-keygen -lf - 2>/dev/null
