@@ -23,5 +23,7 @@
   path = "/home/Filip/.config/git/.gitconfig-dotfiles"
 [includeIf "gitdir:/data/lazyvim_cfg/configs_and_scripts/"]
   path = "/home/Filip/.config/git/.gitconfig-configs"
+[includeIf "gitdir:/data/github-learning/"]
+  path = "/home/Filip/.config/git/.gitconfig-learning-git"
 
 

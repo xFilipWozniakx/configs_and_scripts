@@ -1,5 +1,5 @@
 [core]
-	sshCommand = "ssh -i /home/Filip/.ssh/ssh_keys/k3s+flux -o IdentitiesOnly=yes"
+	sshCommand = "ssh -i /home/Filip/.ssh/ssh_keys/k3s-flux-write -o IdentitiesOnly=yes"
 [user]
 	email = filipwu95@gmail.com
 	name = Filip Wozniak
