@@ -43,4 +43,4 @@ end)
 
 -- obsidian -- 
 hl.bind("SUPER + O", hl.dsp.focus({ window = "class:^(md.obsidian.Obsidian)$"}))
-hl.bind("SUPER + CTRL + P", hl.dsp.exec_raw("/usr/bin/obsidian"))
+hl.bind("SUPER + CTRL + O", hl.dsp.exec_raw("/usr/bin/obsidian"))
