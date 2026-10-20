@@ -1,0 +1,6 @@
+[core]
+	sshCommand = "ssh -i ~/.ssh/ssh_keys/obsidian-notes -o IdentitiesOnly=yes"
+[user]
+	email = filipwu95@gmail.com
+	name = Filip Wozniak
+

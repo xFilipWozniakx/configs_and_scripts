@@ -25,5 +25,8 @@
   path = "/home/Filip/.config/git/.gitconfig-configs"
 [includeIf "gitdir:/data/github-learning/"]
   path = "/home/Filip/.config/git/.gitconfig-learning-git"
+[includeIf "gitdir:/data/obsidian-notes/"]
+  path = "/home/Filip/.config/git/.gitconfig-obsidian-notes"
+
 
 
