@@ -6,10 +6,10 @@ hl.window_rule({
 
 hl.exec_cmd("systemctl --user start anki-cards.service")
 
-hl.window_rule({
-        match = { class = "md.obsidian.Obsidian" },
-        workspace = 9,
-})
+---hl.window_rule({
+---    match = { class = "md.obsidian.Obsidian" },
+---        workspace = 9,
+---    })
 
 hl.window_rule({
         match = { class = "rancher-desktop" },
