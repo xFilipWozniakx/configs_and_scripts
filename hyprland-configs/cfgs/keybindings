@@ -67,5 +67,48 @@ hl.bind("SUPER + SPACE", function()
         type = "oneshot"
       })
 end)
+
+-- rewind 3 sec -- 
+hl.bind("SUPER + LEFT", function()
+    hl.dispatch(hl.dsp.send_key_state({
+      mods = "SHIFT",
+      key = "LEFT",
+      state = "down",
+      window = "class:^(vlc)$"
+      }))
+    hl.timer(function()
+        hl.dispatch(hl.dsp.send_key_state({
+            mods = "SHIFT",
+            key = "LEFT",
+            state = "up",
+            window = "class:^(vlc)$"
+        }))
+    end, {
+        timeout = 100,
+        type = "oneshot"
+      })
+end)
+
+-- jump forward 3 sec -- 
+hl.bind("SUPER + RIGHT", function()
+    hl.dispatch(hl.dsp.send_key_state({
+      mods = "SHIFT",
+      key = "RIGHT",
+      state = "down",
+      window = "class:^(vlc)$"
+      }))
+    hl.timer(function()
+        hl.dispatch(hl.dsp.send_key_state({
+            mods = "SHIFT",
+            key = "RIGHT",
+            state = "up",
+            window = "class:^(vlc)$"
+        }))
+    end, {
+        timeout = 100,
+        type = "oneshot"
+      })
+end)
 --
+
 
