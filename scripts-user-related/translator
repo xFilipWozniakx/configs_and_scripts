@@ -1,9 +1,7 @@
 #!/bin/bash
 
-if [[ "$#" -ne 1 ]]; then
-  echo "Use: $0 word / sentence to translate"
-fi
-
 # SUPER + Z invokes that script in my hyprland
+text=$(wl-paste --primary)
+echo $text
 
-kitty bash ./translator_sh "$1"
+kitty bash "$HOME/.local/bin/translator_sh" "$text"

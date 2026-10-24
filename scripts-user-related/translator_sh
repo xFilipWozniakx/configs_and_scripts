@@ -14,7 +14,7 @@ deepl() {
     --header "Authorization: DeepL-Auth-Key $API_KEY_DEEPL" \
     --header 'Content-Type: application/json' \
     --data "{\"text\": [\"$TEXT\"], \"target_lang\": \"PL\"}")
-  DEEPL_AN=$(echo "$DEEPL" | jq .translations[0].text)
+  DEEPL_AN=$(jq .translations[0].text <<<"$DEEPL")
 }
 
 libre() {
@@ -22,6 +22,7 @@ libre() {
   response_json=$(curl -s -X POST \
     -d "q=${TEXT}&source=en&target=pl&format=text&alternatives=3" \
     https://translate.filipwozniak.org/translate)
+
   declare -A option
   num=1
   while IFS= read -r line; do
@@ -30,6 +31,7 @@ libre() {
   done < <(echo "$response_json" | jq -r '.alternatives[]')
 
   main_answear=$(echo "$response_json" | jq -r .translatedText)
+
   # menu choosing option to add to anki
   PS3="Which translation is the right one?"
   options=("${main_answear}" "${option[1]}" "${option[2]}" "${option[3]}" "${DEEPL_AN}" "My own")
@@ -53,6 +55,7 @@ libre() {
       ;;
     "${options[4]}")
       answer="${options[4]}"
+      ## DEPL translation
       break
       ;;
     "${options[5]}")
@@ -66,6 +69,8 @@ libre() {
     esac
   done
 }
+
+libre "$1"
 
 notify-send -t 10000 "$answer"
 ~/.local/bin/adding-english "$TEXT" "$answer"
