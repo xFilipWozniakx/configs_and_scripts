@@ -20,6 +20,4 @@ curl -s -X POST http://localhost:8765 -d "{
 			}
 		}
 	}
-	}" | jq . 
-
-
+	}" | jq .
