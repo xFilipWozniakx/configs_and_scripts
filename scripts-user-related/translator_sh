@@ -1,0 +1,65 @@
+#!/bin/bash
+
+eval $(grep "API_KEY_DEEPL" "$HOME/.bashrc_local")
+export API_KEY_DEEPL
+
+#API_KEY_DEEPL="hidden in local_rc"
+ENDPOINT="https://api-free.deepl.com/v2/translate"
+TEXT=$1
+DEEPL=$(curl -s -X POST \
+  --url "$ENDPOINT" \
+  --header "Authorization: DeepL-Auth-Key $API_KEY_DEEPL" \
+  --header 'Content-Type: application/json' \
+  --data "{\"text\": [\"$TEXT\"], \"target_lang\": \"PL\"}")
+
+DEEPL_AN=$(echo "$DEEPL" | jq .translations[0].text)
+
+response_json=$(curl -s -X POST \
+  -d "q=${TEXT}&source=en&target=pl&format=text&alternatives=3" \
+  https://translate.filipwozniak.org/translate)
+
+main_answear=$(echo "$response_json" | jq -r .translatedText)
+declare -A option
+num=1
+while IFS= read -r line; do
+  option[$num]="$line"
+  num=$((num + 1))
+done < <(echo "$response_json" | jq -r '.alternatives[]')
+
+# menu choosing option to add to anki
+PS3="Which translation is the right one?"
+options=("${main_answear}" "${option[1]}" "${option[2]}" "${option[3]}" "${DEEPL_AN}" "My own")
+select opt in "${options[@]}"; do
+  case $opt in
+  "${options[0]}")
+    answer=$main_answear
+    break
+    ;;
+  "${options[1]}")
+    answer="${options[1]}"
+    break
+    ;;
+  "${options[2]}")
+    answer="${options[2]}"
+    break
+    ;;
+  "${options[3]}")
+    answer="${options[3]}"
+    break
+    ;;
+  "${options[4]}")
+    answer="${options[4]}"
+    break
+    ;;
+  "${options[5]}")
+    read -p "Input translation:" -r answer
+    echo "$answer"
+    break
+    ;;
+  *)
+    echo "Invalid option selected"
+    ;;
+  esac
+done
+notify-send -t 10000 "$answer"
+~/.local/bin/adding-english "$TEXT" "$answer"

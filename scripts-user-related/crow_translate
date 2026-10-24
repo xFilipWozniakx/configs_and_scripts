@@ -1,11 +1,15 @@
 #!/bin/bash
 
 TEXT="$(wl-paste -p)"
-if [[ -z "$TEXT" ]];then
-	notify-send "Something wrong with translator output"
-	exit 1
+if [[ -z "$TEXT" ]]; then
+  notify-send "Something wrong with translator output"
+  exit 1
 fi
 translation=$(/home/Filip/.local/bin/translator "$TEXT")
+
+# DISPLAY TO THE SCREEN AND ALLOW CHOOSING
+
+kitty --hold bash -c # ?
+
 notify-send -t 10000 "$translation"
 ~/.local/bin/adding-english "$TEXT" "$translation"
-
